@@ -34,4 +34,9 @@ export class MovieService {
     };
     return this.http.post('http://ec2-34-217-86-229.us-west-2.compute.amazonaws.com:6205/recommendMovies', recommendObject, httpOptions)
   }
+
+  ratedMovies(person: string){
+    var url = `http://ec2-34-217-86-229.us-west-2.compute.amazonaws.com:6205/getRatedMovies?person=${person}`
+    return this.http.get(url);
+  }
 }
