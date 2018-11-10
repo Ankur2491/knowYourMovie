@@ -19,7 +19,7 @@ export class RecommendComponent implements OnInit {
   ngOnInit() {
 
     this.profile = JSON.parse(localStorage.getItem('user_details'));
-    this.ms.recommendMovies("Toby")
+    this.ms.recommendMovies(this.profile["nickname"])
       .subscribe((res: Response) => {
         this.movies = res;
         this.movies.forEach(movieId => {

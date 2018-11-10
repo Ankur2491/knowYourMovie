@@ -14,7 +14,8 @@ export class AppComponent implements OnInit{
     this.auth.currentProfile.subscribe((pic)=>this.pic = pic )
   }
   login(){
-       this.auth.login();
+      this.auth.login();
+	//this.router.navigate(["/home"]);
   }
   home(){
     this.router.navigate(["/home"]);

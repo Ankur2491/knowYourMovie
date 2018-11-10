@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   ratingObject: Object = { "id": '', "rating": '', "email": '' };
   ratingResponse;
   constructor(private auth: AuthService, fb: FormBuilder, private ms: MovieService, private http: HttpClient, private router: Router) {
+    //console.log("In Constructor::",JSON.parse(localStorage.getItem('user_details')));
     this.auth.handleAuthentication().then(() => {
       this.profile = JSON.parse(localStorage.getItem('user_details'));
       this.auth.changeProfile(this.profile["picture"]);
@@ -35,6 +36,10 @@ export class HomeComponent implements OnInit {
     })
   }
   ngOnInit() {
+    this.profile = JSON.parse(localStorage.getItem('user_details'));
+    if (this.profile) {
+      this.ratingObject["nickname"] = this.profile.nickname;
+    }
   }
 
   searchMovie(movieName: any) {
@@ -59,7 +64,7 @@ export class HomeComponent implements OnInit {
       })
     };
     this.http.post(
-      'http://localhost:5000/submitreview', this.ratingObject, httpOptions)
+      'http://ec2-34-217-86-229.us-west-2.compute.amazonaws.com:6205/submitreview', this.ratingObject, httpOptions)
       .subscribe((res: Response) => {
         this.ratingResponse = res;
 
@@ -69,3 +74,4 @@ export class HomeComponent implements OnInit {
 
 
 }
+

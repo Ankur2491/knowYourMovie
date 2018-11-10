@@ -1,0 +1,8 @@
+{
+  "port": 6200,
+  "server": {
+    "baseDir": "./dist/knowYourMovie"
+  },
+  "notify": false
+
+}

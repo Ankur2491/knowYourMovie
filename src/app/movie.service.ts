@@ -32,6 +32,6 @@ export class MovieService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post('http://localhost:5000/recommendMovies', recommendObject, httpOptions)
+    return this.http.post('http://ec2-34-217-86-229.us-west-2.compute.amazonaws.com:6205/recommendMovies', recommendObject, httpOptions)
   }
 }

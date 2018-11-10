@@ -11,7 +11,7 @@
         <a class="nav-link" (click)="home()"><img class="img-fluid rounded-circle float-right" width="8%"  src="{{pic}}"></a>
       </li>
       <li class="nav-item" *ngIf="!auth.isAuthenticated()">
-        <a class="nav-link" (click)="auth.login()">Log In</a>
+        <a class="nav-link" (click)="login()">Log In</a>
       </li>
       <li class="nav-item" *ngIf="auth.isAuthenticated()">
         <a class="nav-link" (click)="recommendMovies()">Recommend Movies</a>
@@ -19,12 +19,17 @@
       <li class="nav-item" *ngIf="auth.isAuthenticated()">
         <a class="nav-link" (click)="auth.logout()">Log Out</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.linkedin.com/in/ankur-sharma-341446b1/">Contact Me</a>
+      </li>
+
     </ul>
     <ul>
 
     </ul>
   </div>
 </nav>
+<img class="img-fluid" *ngIf="!auth.isAuthenticated()" src="assets/images/years-for-movies.jpg">
 <div>
 <router-outlet></router-outlet>
 </div>
