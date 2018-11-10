@@ -14,7 +14,7 @@ export class AuthService {
         clientID: 'PKKzo3TocEJ8lhPXgBIjuGZsxRdoJVL9',
         domain: 'swiftapps.auth0.com',
         responseType: 'token id_token',
-        redirectUri: 'http://ec2-34-217-86-229.us-west-2.compute.amazonaws.com:6200/home',
+        redirectUri: 'http://localhost:4200/home',
         scope: 'openid email profile'
     });
     userProfile: any;
@@ -50,7 +50,8 @@ export class AuthService {
         localStorage.removeItem('expires_at');
         localStorage.removeItem('user_details');
         // Go back to the home route
-        this.router.navigate(['/']);
+        //this.router.navigate([{outlets: {primary: 'path',logout: 'path'}}]);
+        //this.router.navigate(["/"]);
       }
       public isAuthenticated(): boolean {
         // Check whether the current time is past the
