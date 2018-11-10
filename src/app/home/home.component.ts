@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   selectedId: any;
   ratingObject: Object = { "id": '', "rating": '', "email": '' };
   ratingResponse;
+  moviesRated: any;
   constructor(private auth: AuthService, fb: FormBuilder, private ms: MovieService, private http: HttpClient, private router: Router) {
     //console.log("In Constructor::",JSON.parse(localStorage.getItem('user_details')));
     this.auth.handleAuthentication().then(() => {
@@ -39,10 +40,15 @@ export class HomeComponent implements OnInit {
     this.profile = JSON.parse(localStorage.getItem('user_details'));
     if (this.profile) {
       this.ratingObject["nickname"] = this.profile.nickname;
+      this.ms.ratedMovies(this.profile.nickname).subscribe((res: Response)=>{
+        this.moviesRated=res;
+      });
     }
   }
 
   searchMovie(movieName: any) {
+    this.selectedId = 0;
+    this.ratingResponse = null;
     this.ms.searchMovie(movieName["search"]).subscribe((res: Response) => {
       this.searchResults = res;
     });

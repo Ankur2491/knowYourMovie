@@ -35,23 +35,26 @@
   </div>
 -->
 <div *ngIf="searchResults">
-<div class="card container-fluid" *ngFor="let is of searchResults.results">
+  <div class="card container-fluid" *ngFor="let is of searchResults.results">
     <form [formGroup]="reviewForm" (ngSubmit)="submitRating()">
-    <img width="20%" height="40%" src="https://image.tmdb.org/t/p/w500/{{is.poster_path}}" alt="image not available">
-    <div class="card-body">
-      <h5 class="card-title">{{is.title}}(Release Date: {{is.release_date}})</h5>
-      <p class="card-text"><i>{{is.overview}}</i></p>
-      <p class="card-text">Your Rating:</p>
-      <div class="pull-left">
-      <star-rating-comp   [starType]="'svg'" (onClick)="onClick($event,is.id,is.poster_path,is.overview)"></star-rating-comp>
-      </div>
-      <div class="pull-left">
-      <button type="submit" class="btn btn-primary" *ngIf="selectedId == is.id">Submit Review</button>
-      <br/>
-      <span *ngIf="ratingResponse && ratingResponse.id == is.id" class="badge badge-success">Review Submitted!!</span>
-    </div>
+      <img width="20%" height="40%" src="https://image.tmdb.org/t/p/w500/{{is.poster_path}}" alt="image not available">
+      <div class="card-body">
+        <h5 class="card-title">{{is.title}}(Release Date: {{is.release_date}})</h5>
+        <p class="card-text"><i>{{is.overview}}</i></p>
+        <p class="card-text">Your Rating:</p>
+        <div *ngIf="moviesRated.hasOwnProperty(is.id)" class="pull-left">
+          <star-rating-comp [starType]="'svg'" [rating]="moviesRated[is.id]" (onClick)="onClick($event,is.id,is.poster_path,is.overview)"></star-rating-comp>
+        </div>
+        <div *ngIf="!moviesRated.hasOwnProperty(is.id)" class="pull-left">
+          <star-rating-comp [starType]="'svg'" [rating]="0" (onClick)="onClick($event,is.id,is.poster_path,is.overview)"></star-rating-comp>
+        </div>
+        <div class="pull-left">
+          <button type="submit" class="btn btn-primary" *ngIf="selectedId == is.id">Submit Review</button>
+          <br />
+          <span *ngIf="ratingResponse && ratingResponse.id == is.id" class="badge badge-success">Review Submitted!!</span>
+        </div>
       </div>
     </form>
-</div>
+  </div>
 </div>
 <router-outlet></router-outlet>
