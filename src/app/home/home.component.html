@@ -42,10 +42,11 @@
         <h5 class="card-title">{{is.title}}(Release Date: {{is.release_date}})</h5>
         <p class="card-text"><i>{{is.overview}}</i></p>
         <p class="card-text">Your Rating:</p>
-        <div *ngIf="moviesRated.hasOwnProperty(is.id)" class="pull-left">
+        <div *ngIf="moviesRated!='norecords' && moviesRated.hasOwnProperty(is.id)" class="pull-left">
+
           <star-rating-comp [starType]="'svg'" [rating]="moviesRated[is.id]" (onClick)="onClick($event,is.id,is.poster_path,is.overview)"></star-rating-comp>
         </div>
-        <div *ngIf="!moviesRated.hasOwnProperty(is.id)" class="pull-left">
+        <div *ngIf="moviesRated=='norecords' || (moviesRated && (!moviesRated.hasOwnProperty(is.id)))" class="pull-left">
           <star-rating-comp [starType]="'svg'" [rating]="0" (onClick)="onClick($event,is.id,is.poster_path,is.overview)"></star-rating-comp>
         </div>
         <div class="pull-left">

@@ -14,7 +14,7 @@ export class AuthService {
         clientID: 'PKKzo3TocEJ8lhPXgBIjuGZsxRdoJVL9',
         domain: 'swiftapps.auth0.com',
         responseType: 'token id_token',
-        redirectUri: 'http://localhost:4200/home',
+        redirectUri: 'http://ec2-54-244-2-94.us-west-2.compute.amazonaws.com:6200/home',
         scope: 'openid email profile'
     });
     userProfile: any;
