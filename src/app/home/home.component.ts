@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -20,8 +21,16 @@ export class HomeComponent implements OnInit {
   isRated: boolean;
   selectedId: any;
   ratingObject: Object = { "id": '', "rating": '', "email": '' };
-  ratingResponse;
+  ratingResponse: any;
   moviesRated: any;
+  max = 5;
+  rate = 2;
+  isReadonly = false;
+ 
+  overStar: number | undefined;
+  percent: number;
+ 
+
   constructor(private auth: AuthService, fb: FormBuilder, private ms: MovieService, private http: HttpClient, private router: Router) {
     //console.log("In Constructor::",JSON.parse(localStorage.getItem('user_details')));
     this.auth.handleAuthentication().then(() => {
@@ -42,8 +51,20 @@ export class HomeComponent implements OnInit {
       this.ratingObject["nickname"] = this.profile.nickname;
       this.ms.ratedMovies(this.profile.nickname).subscribe((res: Response)=>{
         this.moviesRated=res;
+        console.log("Rated Movies::",this.moviesRated);
+
       });
     }
+  }
+
+  hoveringOver(value: number,data:any): void {
+    this.overStar = value;
+    this.percent = (value / this.max) * 100;
+    console.log(value);
+  }
+ 
+  resetStar(): void {
+    this.overStar = void 0;
   }
 
   searchMovie(movieName: any) {
@@ -51,6 +72,12 @@ export class HomeComponent implements OnInit {
     this.ratingResponse = null;
     this.ms.searchMovie(movieName["search"]).subscribe((res: Response) => {
       this.searchResults = res;
+    });
+    this.ms.ratedMovies(this.profile.nickname).subscribe((res: Response)=>{
+       if(res["norecords"] == 1)
+           this.moviesRated="norecords";
+       else
+           this.moviesRated=res;
     });
   }
 
@@ -70,7 +97,7 @@ export class HomeComponent implements OnInit {
       })
     };
     this.http.post(
-      'http://ec2-34-217-86-229.us-west-2.compute.amazonaws.com:6205/submitreview', this.ratingObject, httpOptions)
+      'http://ec2-54-244-2-94.us-west-2.compute.amazonaws.com:6205/submitreview', this.ratingObject, httpOptions)
       .subscribe((res: Response) => {
         this.ratingResponse = res;
 

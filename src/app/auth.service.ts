@@ -7,6 +7,7 @@ import * as auth0 from 'auth0-js';
 //import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 (window as any).global = window;
+
 //const Auth0Lock = require('auth0-lock').default;
 @Injectable()
 export class AuthService {

@@ -1,3 +1,7 @@
+<div *ngIf="imgArray.length == 0">
+  <h2> We couldn't find movies that match your taste! Try rating some more movies.</h2>
+</div>
+<div *ngIf="imgArray.length>0">
 <h2>Here is a list of recommended movies for you!!</h2>
 <div class="card container-fluid" *ngFor="let ia of imgArray">
   <img width="20%" height="40%" src="https://image.tmdb.org/t/p/w500/{{ia.poster_path}}" alt="image not available">
@@ -5,4 +9,5 @@
     <h5 class="card-title">{{ia.title}}(Release Date: {{ia.release_date}})</h5>
     <p class="card-text"><i>{{ia.overview}}</i></p>
   </div>
+</div>
 </div>

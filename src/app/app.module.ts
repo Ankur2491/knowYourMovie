@@ -4,12 +4,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { StarRatingModule } from 'angular-star-rating';
 import { AuthService } from './auth.service'; 
 import { MovieService } from './movie.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RecommendComponent } from './recommend/recommend.component';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { RecommendComponent } from './recommend/recommend.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    StarRatingModule,
+    RatingModule.forRoot(),
     RouterModule.forRoot(
       [
         {path: "home", component: HomeComponent},

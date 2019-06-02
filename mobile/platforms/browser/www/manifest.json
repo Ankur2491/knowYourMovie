@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "KnowYourMovie",
+  "short_name": "KnowYourMovie",
+  "version": "com.ankur.knowYourMovie",
+  "description": "Your personal movie recommender",
+  "author": "Ankur Sharma",
+  "icons": [],
+  "start_url": "index.html"
+}

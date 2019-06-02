@@ -32,11 +32,12 @@ export class MovieService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post('http://ec2-34-217-86-229.us-west-2.compute.amazonaws.com:6205/recommendMovies', recommendObject, httpOptions)
+    return this.http.post('http://ec2-54-244-2-94.us-west-2.compute.amazonaws.com:6205/recommendMovies', recommendObject, httpOptions)
   }
 
   ratedMovies(person: string){
-    var url = `http://ec2-34-217-86-229.us-west-2.compute.amazonaws.com:6205/getRatedMovies?person=${person}`
+    var url = `http://ec2-54-244-2-94.us-west-2.compute.amazonaws.com:6205/getRatedMovies?person=${person}`
     return this.http.get(url);
   }
+
 }
