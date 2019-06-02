@@ -52,6 +52,12 @@ export class HomeComponent implements OnInit {
     this.ms.searchMovie(movieName["search"]).subscribe((res: Response) => {
       this.searchResults = res;
     });
+    this.ms.ratedMovies(this.profile.nickname).subscribe((res: Response)=>{
+       if(res["norecords"] == 1)
+           this.moviesRated="norecords";
+       else
+           this.moviesRated=res;
+    });
   }
 
   onClickResult: IStarRatingOnClickEvent;
@@ -70,7 +76,7 @@ export class HomeComponent implements OnInit {
       })
     };
     this.http.post(
-      'http://ec2-34-217-86-229.us-west-2.compute.amazonaws.com:6205/submitreview', this.ratingObject, httpOptions)
+      'http://ec2-54-244-2-94.us-west-2.compute.amazonaws.com:6205/submitreview', this.ratingObject, httpOptions)
       .subscribe((res: Response) => {
         this.ratingResponse = res;
 
